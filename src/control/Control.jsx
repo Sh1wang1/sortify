@@ -58,7 +58,7 @@ function Control({
                 onChange={(e) => setSpeed(Number(e.target.value))}
                 disabled={isSorting}
                 className="neu-dropdown"
-              >
+              > <option value=''>Select Speed</option>
                 <option value={3000}>Super Slow</option>
                 <option value={2000}>Extra Slow</option>
                 <option value={1000}>Slow</option>
