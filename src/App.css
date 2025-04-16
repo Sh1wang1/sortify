@@ -1,0 +1,191 @@
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  
+  .app-container {
+    display: flex;
+    height: 100vh;
+  }
+  .sort {
+    color: black;
+    font-size: 45px;
+  }
+  .ify {
+    color: #e91e63;
+    font-size: 45px;
+
+  }
+  
+  .group:hover .sort {
+    color: #e91e63;
+  }
+  .group:hover .ify {
+    color: black;
+  }
+  
+  .sidebar {
+    width: 300px;
+    background: linear-gradient(to right, #c8e7eb 0%, white 100%);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-shadow: 2px 0 5px rgba(121, 53, 53, 0.1);
+  }
+  
+  .sidebar h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-left: 800px;
+    z-index: 2;
+  }
+  
+  .sidebar label {
+    font-weight: 500;
+  }
+  
+  .sidebar input,
+  .sidebar select {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+  }
+  
+  .sidebar input[type="range"] {
+    width: 100%;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  button,
+  select,
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border:none;
+    font-size: 16px;
+    background-color: transparent;
+  }
+  
+  .sidebar button {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+    width:260px;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar button:hover {
+    background-color: #0c8592;
+  }
+  
+  .footer {
+    margin-left: 80px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e91e63;
+    cursor: pointer;
+  }
+  
+  .visualizer {
+    flex-grow: 1;
+    background: linear-gradient(to bottom, #c8e7eb 0%, white 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap:25px;
+  }
+
+  .play-btn {
+    margin-right: 270px;
+    padding: 10px 30px;
+    width:250px;
+    background-color: #00bcd4;
+    box-shadow: 1px 2px 1px rgba(5, 0, 0, 0.671);
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+
+  }
+  
+  .play-btn:disabled {
+    background-color: #00bcd4;
+    cursor: not-allowed;
+  }
+  .play-btn:hover {
+    background-color: #0e7a86;
+    box-shadow: 2px 4px 6px rgba(2, 1, 1, 0.932);
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+  }
+  @media (max-width:830px) {
+    .app-container {
+      flex-direction: row;
+    }
+  
+    .sidebar {
+      width: 180px;
+      align-items: center;
+      padding: 1rem;
+      box-shadow: none;
+    }
+  
+    .sidebar h2 {
+      font-size: 30px;
+      margin-left: 0;
+      text-align: center;
+    }
+  
+     .buttons {
+      flex-direction: column;
+      align-items: center;
+
+    } 
+  
+    .sidebar button {
+      width: 180px;
+    }
+  
+    .footer {
+      margin-left: 0;
+      text-align: center;
+      padding-top: 30px;
+    }
+  
+    .visualizer {
+      padding: 1rem;
+      gap: 7px;
+        display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+  
+    .play-btn {
+      width: 30%;
+      cursor: pointer;
+      margin: 0;
+    }
+    
+  }
+

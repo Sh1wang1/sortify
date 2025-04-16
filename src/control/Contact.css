@@ -1,0 +1,89 @@
+.contact-section {
+    position: fixed;
+    bottom: -400px;
+    left: 0;
+    width: 100%;
+    background-color: rgb(44, 42, 42);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+   
+    transition: bottom 0.4s ease-in-out;
+    z-index: 1000;
+    box-shadow: 0 0 10px #696868, 0 0 20px #585555, 0 0 30px #666060;
+  }
+  
+  .contact-section.show {
+    bottom: 0;
+  }
+  
+  .contact-section h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  
+  .social-icons a {
+    color: inherit;
+    transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #ff4d4d; 
+  }
+  .social-icons {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color: white;
+    gap:200px;
+    margin-bottom: 20px;
+  }
+  
+  .close-icon {
+    margin-top: 20px;
+    padding:10px 10px;
+   color: #ffffff;
+   border: none;
+    font-size: 35px;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    top: -15px;
+    right:50px;
+
+  }
+
+  .close-icon:hover {
+   
+    color: #ff4d4d;
+  
+  }
+  @media (max-width: 830px) {
+    .contact-section {
+      padding: 20px 10px;
+    }
+  
+    .social-icons {
+      flex-direction: row;
+      gap: 55px;
+      font-size: 24px;
+    }
+  
+    .close-icon {
+      top: -30px;
+      right: 15px;
+      font-size: 28px;
+    }
+    .close-icon:hover {
+   
+      color: #ff4d4d;
+    }
+    .contact-section h2 {
+      font-size: 20px;
+    }
+    .social-icons a:hover {
+      color: #ff4d4d; 
+    }
+  }
+  
