@@ -18,7 +18,7 @@ function Control({
           value={userInuptArray}
           onChange={(e) => setUserInuptArray(e.target.value)}
           className="neu-input"
-          placeholder="Enter your Array between 1-500"
+          placeholder="Enter your Array between 1-400"
         />
         <div className="info-wrap">
           <i className="info-icon">i</i>

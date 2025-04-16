@@ -54,13 +54,13 @@ function App() {
     const userInput = userInuptArray.split(",");
     const filteredInput = userInput
       .filter((item) => !isNaN(item) && Number.isInteger(parseFloat(item)))
-      .map((item) => Number(item) <= 500 && Number(item));
+      .map((item) => Number(item) <= 400 && Number(item));
     setArray([...filteredInput]);
   }, [userInuptArray]);
 
   const handleNewArrayGenrate = () => {
     const newArray = Array.from({ length: 15 }, () =>
-      Math.floor(Math.random() * 500)
+      Math.floor(Math.random() * 400)
     );
     setArray(newArray);
   };

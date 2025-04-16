@@ -1,9 +1,7 @@
-  body {
+ body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
   }
-
-  
   .app-container {
     display: flex;
     height: 100vh;
@@ -28,7 +26,6 @@
   .sidebar {
     width: 300px;
     background: linear-gradient(to right, #c8e7eb 0%, white 100%);
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -37,13 +34,12 @@
   }
   
   .sidebar h2 {
-    font-size: 40px;
+    font-size: 37px;
     font-weight: bold;
-    margin-bottom: 15px;
-    margin-left: 800px;
+    margin-bottom: 10px;
+    margin-left: 700px;
     z-index: 2;
   }
-  
   .sidebar label {
     font-weight: 500;
   }
@@ -70,12 +66,12 @@
   button,
   select,
   input {
-    width: 100%;
+    width: 90%;
     padding: 0.5rem;
     border-radius: 10px;
     border:none;
     font-size: 16px;
-    background-color: transparent;
+
   }
   
   .sidebar button {
@@ -86,7 +82,7 @@
     background-color: #00bcd4;
     color: white;
     cursor: pointer;
-    width:260px;
+    width:249px;
     transition: background-color 0.3s;
   }
   
@@ -111,19 +107,19 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    gap:25px;
+    gap:12px;
   }
 
   .play-btn {
-    margin-right: 270px;
-    padding: 10px 30px;
-    width:250px;
+    margin-right: 80px;
+    padding: 10px 20px;
+    width:200px;
     background-color: #00bcd4;
     box-shadow: 1px 2px 1px rgba(5, 0, 0, 0.671);
     border-radius: 10px;
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
 
   }
@@ -133,8 +129,8 @@
     cursor: not-allowed;
   }
   .play-btn:hover {
-    background-color: #0e7a86;
-    box-shadow: 2px 4px 6px rgba(2, 1, 1, 0.932);
+    background-color: #0d5d66;
+    box-shadow: 2px 4px 6px rgb(2, 1, 1);
     transform: translateY(-2px);
     transition: all 0.2s ease-in-out;
   }
@@ -163,7 +159,7 @@
     } 
   
     .sidebar button {
-      width: 180px;
+      width: 150px;
     }
   
     .footer {
@@ -175,7 +171,7 @@
     .visualizer {
       padding: 1rem;
       gap: 7px;
-        display: flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;

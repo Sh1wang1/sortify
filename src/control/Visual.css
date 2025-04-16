@@ -2,15 +2,16 @@
     display: flex;
     justify-content: center;
     align-items:flex-end;
-    height: 520px;
-    gap: 10px;
-    margin-top: 20px;
-    margin-right: 240px;
+    gap: 8px;
+    margin-top: 50px;
+    position: relative;
+    height: 400px;
+    margin-right: 88px;
   }
   .bar {
     margin: 0 5px;
-    margin-right: 12px;
-    width: 30px;
+    margin-right:15px;
+    width: 25px;
     background-color: #5fb8fd;
     border-radius: 10px;
     box-shadow: 5px 5px 15px #6b6b6b;
@@ -19,9 +20,9 @@
     justify-content: center;
     align-items: flex-end;
     color: #060606;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
   }
   .bar.yellow {
     background-color: #f5c85c;
