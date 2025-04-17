@@ -9,6 +9,7 @@ function Control({
   setUserInuptArray,
   reSet,
   selectedSorting,
+  speed,
 }) {
   return (
     <div className="container">
@@ -55,8 +56,8 @@ function Control({
             <label htmlFor="speed">
               Speed:
               <select
+              value={speed}
                 onChange={(e) => setSpeed(Number(e.target.value))}
-                disabled={isSorting}
                 className="neu-dropdown"
               > <option value=''>Select Speed</option>
                 <option value={3000}>Super Slow</option>

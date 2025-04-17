@@ -1,5 +1,5 @@
 import React from "react";
-import "./Color.css"; // Make sure your CSS matches the updated class names
+import "./Color.css";
 
 function Color() {
   return (

@@ -22,7 +22,7 @@ function App() {
   });
 
   const [speed, setSpeed] = useState(() => {
-    return Number(localStorage.getItem("speed")) || 3000;
+    return Number(localStorage.getItem("speed")) || "";
   });
 
   const [selectedSorting, setSelectedSorting] = useState(() => {
@@ -49,14 +49,17 @@ function App() {
   }, [userInuptArray]);
 
   useEffect(() => {
-    if (!userInuptArray.trim()) return;
-
+    if (!userInuptArray.trim()) {
+      setArray([]);
+      return;
+    }
     const userInput = userInuptArray.split(",");
     const filteredInput = userInput
-      .filter((item) => !isNaN(item) && Number.isInteger(parseFloat(item)))
-      .map((item) => Number(item) <= 400 && Number(item));
+      .map((item) => Number(item))
+      .filter((num) => Number.isInteger(num) && num >= 1 && num <= 400);
     setArray([...filteredInput]);
   }, [userInuptArray]);
+  
 
   const handleNewArrayGenrate = () => {
     const newArray = Array.from({ length: 15 }, () =>
@@ -69,7 +72,7 @@ function App() {
     setArray([]);
     setSelectedSorting("");
     setUserInuptArray("");
-    setSpeed(3000);
+    setSpeed("");
     localStorage.removeItem("array");
     localStorage.removeItem("selectedSorting");
     localStorage.removeItem("userInputArray");
