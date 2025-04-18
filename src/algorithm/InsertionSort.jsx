@@ -1,21 +1,36 @@
 export const insertionSort = (array) => {
-    let animations = [];
-    let tempArray = [...array]; 
-  
-    for (let i = 1; i < tempArray.length; i++) {
-      let key = tempArray[i];
-      let j = i - 1;
-  
-      while (j >= 0 && tempArray[j] > key) {
-        animations.push([j, j + 1, true]);  
-        tempArray[j + 1] = tempArray[j];   
-        j--;
-      }
-  
-      animations.push([j + 1, i, true]);    
-      tempArray[j + 1] = key;
+  const animations = [];
+  const tempArray = [...array];
+
+  for (let i = 1; i < tempArray.length; i++) {
+    const key = tempArray[i];
+    let j = i - 1;
+    animations.push({ type: "highlight", index: i });
+
+    while (j >= 0 && tempArray[j] > key) {
+      animations.push({ type: "compare", indices: [j, j + 1] });
+      tempArray[j + 1] = tempArray[j];
+      animations.push({
+        type: "overwrite",
+        toIndex: j + 1,
+        fromIndex: j,
+      });
+
+      j--;
     }
-  
-    return { animations, sorted: tempArray };
-  };
-  
+
+    tempArray[j + 1] = key;
+    animations.push({
+      type: "insert",
+      index: j + 1,
+      value: key,
+    });
+
+    animations.push({
+      type: "sortedUpto",
+      index: i,
+    });
+  }
+
+  return { animations, sorted: tempArray };
+};

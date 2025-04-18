@@ -6,6 +6,21 @@
     height:94vh;
     width:25vh;
   }
+  .legend-container h3{
+    font-size: 21px;
+    text-align: center;
+    padding-top: 14px;
+    color:GRey;
+    font-weight: bold;
+  }
+  .visual{
+      
+      background: linear-gradient(to right,  #01ddff, #1f1e1e); 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+
   .legend-right {
     position: absolute;
     right: 0px;
@@ -33,7 +48,8 @@
 
   }
   .legend-label{
-    font-size: 18px;
+    font-size: 15px;
+
   }
   .legend-indicator {
     display: inline-block;
@@ -82,9 +98,11 @@
       margin-right:466px;
       background: transparent;
     }
-  
+  .visual{
+    margin-top: -30px;
+  }
     .close-legend {
-       margin-left:-270px;
+       margin-left:-260px;
        margin-top: -2px;
         z-index: 11; 
         font-size: 25px;
@@ -95,7 +113,8 @@
   
     .legend-item {
       font-size:1px;
-      margin-top:1px;
+      margin-top:-15px;
+      border-radius: 10px;
        }
     .legend-label{
       font-size: 13px;

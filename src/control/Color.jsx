@@ -4,7 +4,7 @@ import "./Color.css";
 function Color() {
   return (
     <div className="legend-container">
-      
+      <h3 className="visual">Visual Actions</h3>
       <ul className="legend-list">
         <li className="legend-item">
           <span className="legend-indicator red"></span>

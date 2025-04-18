@@ -58,6 +58,10 @@ function App() {
       .map((item) => Number(item))
       .filter((num) => Number.isInteger(num) && num >= 1 && num <= 400);
     setArray([...filteredInput]);
+    const bars = document.getElementsByClassName("bar");
+    for (let i = 0; i < bars.length; i++) {
+      bars[i].style.backgroundColor = "#5fb8fd"; 
+    }
   }, [userInuptArray]);
 
   const handleNewArrayGenrate = () => {
@@ -112,8 +116,8 @@ function App() {
         break;
       }
       case "insertionSort": {
-        const {animations,sorted} = insertionSort(array);
-        animateInsertionSorting(animations, sorted);
+        const { animations, sorted } = insertionSort(array);
+        animateInsertionSorting(animations, sorted); 
         break;
       }
       default:
@@ -173,39 +177,6 @@ function App() {
     }, animation.length * speed + speed);
   };
   
-  const animateMergeSorting = (animations) => {
-    const bars = document.getElementsByClassName("bar");
-    for (let i = 0; i < animations.length; i++) {
-      const isColorChange = i % 3 !== 2;
-      if (isColorChange) {
-        const [barOneIdx, barTwoIdx] = animations[i];
-        const barOne = bars[barOneIdx];
-        const barTwo = bars[barTwoIdx];
-        const color = i % 3 === 0 ? "yellow" : " #5fb8fd";
-        setTimeout(() => {
-          barOne.style.backgroundColor = color;
-          barTwo.style.backgroundColor = color;
-        }, i * speed);
-      } else {
-        setTimeout(() => {
-          const [barOneIdx, newHeight] = animations[i];
-          const barOne = bars[barOneIdx];
-          barOne.style.height = `${newHeight}px`;
-          barOne.innerHTML = newHeight;
-        }, i * speed);
-      }
-    }
-
-    setTimeout(() => {
-      for (let j = 0; j < bars.length; j++) {
-        setTimeout(() => {
-          bars[j].style.backgroundColor = "green";
-        }, j * speed);
-      }
-      setIsSorting(false);
-    }, animations.length * speed);
-  };
-
   const animateSelectionSorting = (animations, sortedArray) => {
     const bars = document.getElementsByClassName("bar");
   
@@ -250,33 +221,95 @@ function App() {
       setArray(sortedArray);
     }, animations.length * speed + speed);
   };
-    
+  
   const animateInsertionSorting = (animations, sortedArray) => {
-    const bars = document.getElementsByClassName("bar"); 
+    const bars = document.getElementsByClassName("bar");
+    for (let i = 0; i < bars.length; i++) {
+      bars[i].style.backgroundColor = "#5fb8fd";  
+    }
+    bars[0].style.backgroundColor = "green";
+
     for (let i = 0; i < animations.length; i++) {
-      const [barOneIdx, barTwoIdx, swap] = animations[i];
-      const barOne = bars[barOneIdx];
-      const barTwo = bars[barTwoIdx];
-      const color = swap ? "yellow" : " #5fb8fd"; 
-
+      const action = animations[i];
+  
       setTimeout(() => {
-        barOne.style.backgroundColor = color;
-        barTwo.style.backgroundColor = color;
-
-        if (swap) {
-          const tempHeight = barOne.style.height;
-          barOne.style.height = barTwo.style.height;
-          barTwo.style.height = tempHeight;
-          const tempContent = barOne.innerHTML;
-          barOne.innerHTML = barTwo.innerHTML;
-          barTwo.innerHTML = tempContent;
+        switch (action.type) {
+          case "highlight": {
+            const bar = bars[action.index];
+            bar.style.backgroundColor = "yellow";
+            break;
+          }
+  
+          case "compare": {
+            const [i1, i2] = action.indices;
+            bars[i1].style.backgroundColor = "red";
+            bars[i2].style.backgroundColor = "red";
+            break;
+          }
+  
+          case "overwrite": {
+            const toBar = bars[action.toIndex];
+            const fromBar = bars[action.fromIndex];
+            toBar.style.height = fromBar.style.height;
+            toBar.innerText = fromBar.innerText;
+            break;
+          }
+  
+          case "insert": {
+            const bar = bars[action.index];
+            const newHeight = action.value; 
+            bar.style.height = `${newHeight}px`; 
+            bar.innerText = action.value;
+            break;
+          }
+          
+  
+          case "sortedUpto": {
+            for (let k = 0; k <= action.index; k++) {
+              bars[k].style.backgroundColor = "green";
+            }
+            break;
+          }
+  
+          default:
+            break;
         }
-
-        setTimeout(() => {
-          barOne.style.backgroundColor = " #5fb8fd";
-          barTwo.style.backgroundColor = " #5fb8fd";
-        }, speed);
       }, i * speed);
+    }
+  
+    setTimeout(() => {
+      for (let j = 0; j < bars.length; j++) {
+        setTimeout(() => {
+          bars[j].style.backgroundColor = "green";
+        }, j * 20);
+      }
+      setTimeout(() => {
+        setIsSorting(false);
+        setArray(sortedArray);
+      }, bars.length * 20);
+    }, animations.length * speed + 100);
+  };
+  const animateMergeSorting = (animations) => {
+    const bars = document.getElementsByClassName("bar");
+    for (let i = 0; i < animations.length; i++) {
+      const isColorChange = i % 3 !== 2;
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOne = bars[barOneIdx];
+        const barTwo = bars[barTwoIdx];
+        const color = i % 3 === 0 ? "yellow" : " #5fb8fd";
+        setTimeout(() => {
+          barOne.style.backgroundColor = color;
+          barTwo.style.backgroundColor = color;
+        }, i * speed);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOne = bars[barOneIdx];
+          barOne.style.height = `${newHeight}px`;
+          barOne.innerHTML = newHeight;
+        }, i * speed);
+      }
     }
 
     setTimeout(() => {
@@ -286,9 +319,10 @@ function App() {
         }, j * speed);
       }
       setIsSorting(false);
-      setArray(sortedArray);
     }, animations.length * speed);
   };
+
+     
 
   return (
     <div className="app-container">

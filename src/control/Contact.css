@@ -20,6 +20,9 @@
   .contact-section h2 {
     font-size: 26px;
     margin-top: 10px;
+    background: linear-gradient(to right, #ffffff, #b19191); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
   .social-icons a {
