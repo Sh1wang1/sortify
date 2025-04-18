@@ -355,7 +355,7 @@ function App() {
           className="play-btn"
           onClick={handlePlay}
           disabled={ isSorting ||
-            array.length === 0 ||
+            array.length === '' ||
             !selectedSorting ||
             !speed }
         >
