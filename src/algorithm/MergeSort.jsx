@@ -25,19 +25,15 @@ export const MergeSort = (array) => {
     let j = middleIdx + 1;
   
     while (i <= middleIdx && j <= endIdx) {
-      // Push two indices that are being compared
       animations.push([i, j]);
-      // Push two indices again, to change their color back
       animations.push([i, j]);
   
       if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-        // Push index and its new height
         animations.push([k, auxiliaryArray[i]]);
-        sortedArray[k++] = auxiliaryArray[i++]; // Update the sortedArray copy
+        sortedArray[k++] = auxiliaryArray[i++]; 
       } else {
-        // Push index and its new height
         animations.push([k, auxiliaryArray[j]]);
-        sortedArray[k++] = auxiliaryArray[j++]; // Update the sortedArray copy
+        sortedArray[k++] = auxiliaryArray[j++]; 
       }
     }
   
@@ -46,7 +42,7 @@ export const MergeSort = (array) => {
       animations.push([i, i]);
   
       animations.push([k, auxiliaryArray[i]]);
-      sortedArray[k++] = auxiliaryArray[i++]; // Update the sortedArray copy
+      sortedArray[k++] = auxiliaryArray[i++]; 
     }
   
     while (j <= endIdx) {
@@ -54,7 +50,7 @@ export const MergeSort = (array) => {
       animations.push([j, j]);
   
       animations.push([k, auxiliaryArray[j]]);
-      sortedArray[k++] = auxiliaryArray[j++]; // Update the sortedArray copy
+      sortedArray[k++] = auxiliaryArray[j++];
     }
   };
   

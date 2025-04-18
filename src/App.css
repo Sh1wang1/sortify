@@ -44,12 +44,10 @@
     font-weight: 500;
   }
   
-  .sidebar input,
   .sidebar select {
-    padding: 8px;
+    padding: 10px 10px;
     font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid transparent;
+    border-radius: 15px;
   }
   
   .sidebar input[type="range"] {

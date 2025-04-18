@@ -16,4 +16,4 @@ function Visual({ array }) {
   )
 }
 
-export default Visual;
+export default Visual; 

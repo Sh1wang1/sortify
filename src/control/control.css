@@ -68,7 +68,7 @@
 }
 
 .neu-dropdown {
-  padding: 10px;
+  padding: 10 10px;
   width: 100%;
   font-size: 16px;
   background: linear-gradient(to bottom, #65d4e2 0%, white 100%);
@@ -103,14 +103,30 @@ select {
   border: none;
   border-radius: 12px;
   outline: none;
+}
+.neu-dropdown option{
+  padding:10px;
+  background:rgba(212, 239, 250, 0.836);
 
 }
+.neu-button:disabled {
+  cursor: not-allowed;
+}
+input:disabled {
+   cursor: not-allowed;
+}
+
 @media (max-width: 830px) {
   .container {
     padding: 15px;
     gap: 25px;
   }
-
+  .neu-button:disabled {
+    cursor: not-allowed;
+  }
+  input:disabled {
+     cursor: not-allowed;
+  }
   .wrapper {
     flex-direction: row;
     gap: 10px;
@@ -122,16 +138,12 @@ select {
     font-size: 14px;
   }
 
-  .neu-dropdown {
-    width: 20px;
-    font-size: 14px;
-  }
 
   .select-wrap {
     gap: 1rem;
-    width: 100%;
+    width: 90%;
   }
-
+  
   .child-wrap label {
     gap: 35px;
   }
@@ -142,10 +154,17 @@ select {
     width: 100px;
     font-size: 12px;
   }
-
+ .neu-dropdown{
+  width:20px;
+  
+ 
+ }
   .info-icon {
     width: 20px;
     height: 20px;
     font-size: 18px;
+  }
+  .neu-dropdown option{
+     background:rgba(212, 239, 250, 0.836);
   }
 }

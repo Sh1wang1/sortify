@@ -5,10 +5,10 @@ import Control from "./control/Control";
 import { bubbleSort } from "./algorithm/BubbleSort";
 import { MergeSort } from "./algorithm/MergeSort";
 import { selectionSort } from "./algorithm/SelectionSort";
+import { insertionSort } from "./algorithm/InsertionSort";
 import ContactSection from "./control/Contact";
 import Color from "./control/Color";
-
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
   const [showColor, setShowColor] = useState(false);
@@ -59,16 +59,23 @@ function App() {
       .filter((num) => Number.isInteger(num) && num >= 1 && num <= 400);
     setArray([...filteredInput]);
   }, [userInuptArray]);
-  
 
   const handleNewArrayGenrate = () => {
     const newArray = Array.from({ length: 15 }, () =>
       Math.floor(Math.random() * 400)
     );
     setArray(newArray);
+    setUserInuptArray(newArray.join(",")); 
+    setTimeout(() => {
+      const bars = document.getElementsByClassName("bar");
+      for (let i = 0; i < bars.length; i++) {
+        bars[i].style.backgroundColor = "#5fb8fd";
+      }
+    }, 0); 
   };
 
   const reSet = () => {
+ 
     setArray([]);
     setSelectedSorting("");
     setUserInuptArray("");
@@ -104,47 +111,68 @@ function App() {
         animateMergeSorting(animations);
         break;
       }
+      case "insertionSort": {
+        const {animations,sorted} = insertionSort(array);
+        animateInsertionSorting(animations, sorted);
+        break;
+      }
       default:
         setIsSorting(false);
         break;
     }
   };
-
   const bubbleAnimation = (animation, sortedArray) => {
     const barEle = document.getElementsByClassName("bar");
+    for (let j = 0; j < barEle.length; j++) {
+      barEle[j].style.backgroundColor = "#5fb8fd"; 
+    }
+  
     for (let i = 0; i < animation.length; i++) {
-      let [barOneInd, bartwoInd, swap] = animation[i];
-      let barOne = barEle[barOneInd];
-      let barTwo = barEle[bartwoInd];
+      const [barOneInd, barTwoInd, swap, isEndOfPass] = animation[i]; 
+      const barOne = barEle[barOneInd];
+      const barTwo = barEle[barTwoInd];
+  
       setTimeout(() => {
         barOne.style.backgroundColor = swap ? "red" : "yellow";
         barTwo.style.backgroundColor = swap ? "red" : "yellow";
+  
         if (swap) {
-          const heightTemp = barOne.style.height;
+          const tempHeight = barOne.style.height;
           barOne.style.height = barTwo.style.height;
-          barTwo.style.height = heightTemp;
-          const content = barOne.innerText;
+          barTwo.style.height = tempHeight;
+  
+          const tempText = barOne.innerText;
           barOne.innerText = barTwo.innerText;
-          barTwo.innerText = content;
+          barTwo.innerText = tempText;
         }
+  
         setTimeout(() => {
-          barOne.style.backgroundColor = "blue";
-          barTwo.style.backgroundColor = "blue";
+          if (barOne.style.backgroundColor !== "green") {
+            barOne.style.backgroundColor = "#5fb8fd";
+          }
+          if (barTwo.style.backgroundColor !== "green") {
+            barTwo.style.backgroundColor = "#5fb8fd";
+          }
+  
+          if (isEndOfPass) {
+            barEle[barTwoInd].style.backgroundColor = "green"; 
+          }
         }, speed);
       }, i * speed);
     }
-
     setTimeout(() => {
       for (let j = 0; j < barEle.length; j++) {
         setTimeout(() => {
           barEle[j].style.backgroundColor = "green";
         }, j * speed);
       }
-      setIsSorting(false);
-      setArray(sortedArray);
-    }, animation.length * speed + speed); 
+      setTimeout(() => {
+        setIsSorting(false);
+        setArray(sortedArray);
+      }, barEle.length * speed);
+    }, animation.length * speed + speed);
   };
-
+  
   const animateMergeSorting = (animations) => {
     const bars = document.getElementsByClassName("bar");
     for (let i = 0; i < animations.length; i++) {
@@ -153,7 +181,7 @@ function App() {
         const [barOneIdx, barTwoIdx] = animations[i];
         const barOne = bars[barOneIdx];
         const barTwo = bars[barTwoIdx];
-        const color = i % 3 === 0 ? "yellow" : "blue";
+        const color = i % 3 === 0 ? "yellow" : " #5fb8fd";
         setTimeout(() => {
           barOne.style.backgroundColor = color;
           barTwo.style.backgroundColor = color;
@@ -180,13 +208,61 @@ function App() {
 
   const animateSelectionSorting = (animations, sortedArray) => {
     const bars = document.getElementsByClassName("bar");
+  
+    for (let i = 0; i < bars.length; i++) {
+      bars[i].style.backgroundColor = "#5fb8fd";
+    }
+  
+    for (let i = 0; i < animations.length; i++) {
+      const [barOneIdx, barTwoIdx, isSwap, isSorted] = animations[i];
+      const barOne = bars[barOneIdx];
+      const barTwo = bars[barTwoIdx];
+  
+      setTimeout(() => {
+        if (!isSorted) {
+          barOne.style.backgroundColor = isSwap ? "red" : "yellow";
+          barTwo.style.backgroundColor = isSwap ? "red" : "yellow";
+  
+          if (isSwap) {
+            const tempHeight = barOne.style.height;
+            barOne.style.height = barTwo.style.height;
+            barTwo.style.height = tempHeight;
+  
+            const tempText = barOne.innerText;
+            barOne.innerText = barTwo.innerText;
+            barTwo.innerText = tempText;
+          }
+  
+          setTimeout(() => {
+            if (barOne.style.backgroundColor !== "green") barOne.style.backgroundColor = "#5fb8fd";
+            if (barTwo.style.backgroundColor !== "green") barTwo.style.backgroundColor = "#5fb8fd";
+          }, speed);
+        }
+  
+        if (isSorted) {
+          bars[barOneIdx].style.backgroundColor = "green";
+        }
+      }, i * speed);
+    }
+  
+    setTimeout(() => {
+      setIsSorting(false);
+      setArray(sortedArray);
+    }, animations.length * speed + speed);
+  };
+    
+  const animateInsertionSorting = (animations, sortedArray) => {
+    const bars = document.getElementsByClassName("bar"); 
     for (let i = 0; i < animations.length; i++) {
       const [barOneIdx, barTwoIdx, swap] = animations[i];
       const barOne = bars[barOneIdx];
       const barTwo = bars[barTwoIdx];
+      const color = swap ? "yellow" : " #5fb8fd"; 
+
       setTimeout(() => {
-        barOne.style.backgroundColor = swap ? "red" : "yellow";
-        barTwo.style.backgroundColor = swap ? "red" : "yellow";
+        barOne.style.backgroundColor = color;
+        barTwo.style.backgroundColor = color;
+
         if (swap) {
           const tempHeight = barOne.style.height;
           barOne.style.height = barTwo.style.height;
@@ -195,9 +271,10 @@ function App() {
           barOne.innerHTML = barTwo.innerHTML;
           barTwo.innerHTML = tempContent;
         }
+
         setTimeout(() => {
-          barOne.style.backgroundColor = "blue";
-          barTwo.style.backgroundColor = "blue";
+          barOne.style.backgroundColor = " #5fb8fd";
+          barTwo.style.backgroundColor = " #5fb8fd";
         }, speed);
       }, i * speed);
     }
@@ -232,7 +309,7 @@ function App() {
           speed={speed}
           selectedSorting={selectedSorting}
         />
-        
+
         <p className="footer" onClick={() => setShowContact(true)}>
           Get In Touch
         </p>
@@ -243,17 +320,22 @@ function App() {
         <button
           className="play-btn"
           onClick={handlePlay}
-          disabled={!selectedSorting || isSorting}
+          disabled={ isSorting ||
+            array.length === 0 ||
+            !selectedSorting ||
+            !speed }
         >
           PLAY
         </button>
       </div>
       {showColor && (
-  <div className="legend-right">
-    <button className="close-legend" onClick={() => setShowColor(false)}>×</button>
-    <Color />
-  </div>
-)}
+        <div className="legend-right">
+          <button className="close-legend" onClick={() => setShowColor(false)}>
+            ×
+          </button>
+          <Color />
+        </div>
+      )}
 
       {showContact && (
         <ContactSection
