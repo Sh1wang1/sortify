@@ -125,57 +125,56 @@ function App() {
         break;
     }
   };
-  const bubbleAnimation = (animation, sortedArray) => {
+  const bubbleAnimation = (animations, sortedArray) => {
     const barEle = document.getElementsByClassName("bar");
+  
     for (let j = 0; j < barEle.length; j++) {
-      barEle[j].style.backgroundColor = "#5fb8fd"; 
+      barEle[j].style.backgroundColor = "#5fb8fd";
     }
   
-    for (let i = 0; i < animation.length; i++) {
-      const [barOneInd, barTwoInd, swap, isEndOfPass] = animation[i]; 
-      const barOne = barEle[barOneInd];
-      const barTwo = barEle[barTwoInd];
+    for (let i = 0; i < animations.length; i++) {
+      const animation = animations[i];
   
       setTimeout(() => {
-        barOne.style.backgroundColor = swap ? "red" : "yellow";
-        barTwo.style.backgroundColor = swap ? "red" : "yellow";
+        if (animation.type === "compare") {
+          const [barOneInd, barTwoInd] = animation.indices;
+          const barOne = barEle[barOneInd];
+          const barTwo = barEle[barTwoInd];
   
-        if (swap) {
-          const tempHeight = barOne.style.height;
-          barOne.style.height = barTwo.style.height;
-          barTwo.style.height = tempHeight;
+          barOne.style.backgroundColor = animation.swap ? "red" : "yellow";
+          barTwo.style.backgroundColor = animation.swap ? "red" : "yellow";
   
-          const tempText = barOne.innerText;
-          barOne.innerText = barTwo.innerText;
-          barTwo.innerText = tempText;
+          if (animation.swap) {
+            const tempHeight = barOne.style.height;
+            barOne.style.height = barTwo.style.height;
+            barTwo.style.height = tempHeight;
+  
+            const tempText = barOne.innerText;
+            barOne.innerText = barTwo.innerText;
+            barTwo.innerText = tempText;
+          }
+  
+          setTimeout(() => {
+            if (barOne.style.backgroundColor !== "green") {
+              barOne.style.backgroundColor = "#5fb8fd";
+            }
+            if (barTwo.style.backgroundColor !== "green") {
+              barTwo.style.backgroundColor = "#5fb8fd";
+            }
+          }, speed);
+  
+        } else if (animation.type === "markSorted") {
+          barEle[animation.index].style.backgroundColor = "green";
         }
-  
-        setTimeout(() => {
-          if (barOne.style.backgroundColor !== "green") {
-            barOne.style.backgroundColor = "#5fb8fd";
-          }
-          if (barTwo.style.backgroundColor !== "green") {
-            barTwo.style.backgroundColor = "#5fb8fd";
-          }
-  
-          if (isEndOfPass) {
-            barEle[barTwoInd].style.backgroundColor = "green"; 
-          }
-        }, speed);
-      }, i * speed);
+      }, i * speed/0.5);
     }
+  
     setTimeout(() => {
-      for (let j = 0; j < barEle.length; j++) {
-        setTimeout(() => {
-          barEle[j].style.backgroundColor = "green";
-        }, j * speed);
-      }
-      setTimeout(() => {
-        setIsSorting(false);
-        setArray(sortedArray);
-      }, barEle.length * speed);
-    }, animation.length * speed + speed);
+      setIsSorting(false);
+      setArray(sortedArray);
+    }, animations.length * speed + speed);
   };
+  
   
   const animateSelectionSorting = (animations, sortedArray) => {
     const bars = document.getElementsByClassName("bar");
@@ -213,7 +212,7 @@ function App() {
         if (isSorted) {
           bars[barOneIdx].style.backgroundColor = "green";
         }
-      }, i * speed);
+      }, i * speed/0.5);
     }
   
     setTimeout(() => {
