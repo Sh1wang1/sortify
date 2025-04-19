@@ -233,13 +233,13 @@ function App() {
   
       setTimeout(() => {
         switch (action.type) {
-          case "highlight": {
+          case "compare": {
             const bar = bars[action.index];
             bar.style.backgroundColor = "yellow";
             break;
           }
   
-          case "compare": {
+          case "swap": {
             const [i1, i2] = action.indices;
             bars[i1].style.backgroundColor = "red";
             bars[i2].style.backgroundColor = "red";
@@ -290,6 +290,9 @@ function App() {
   };
   const animateMergeSorting = (animations) => {
     const bars = document.getElementsByClassName("bar");
+    for (let i=0;i<bars.length;i++){
+      bars[i].style.backgroundColor="#5fb8fd";
+    }
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = i % 3 !== 2;
       if (isColorChange) {
