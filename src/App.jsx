@@ -60,7 +60,7 @@ function App() {
     setArray([...filteredInput]);
     const bars = document.getElementsByClassName("bar");
     for (let i = 0; i < bars.length; i++) {
-      bars[i].style.backgroundColor = "#5fb8fd"; 
+      bars[i].style.backgroundColor = "#5fb8fd";
     }
   }, [userInuptArray]);
 
@@ -69,17 +69,16 @@ function App() {
       Math.floor(Math.random() * 400)
     );
     setArray(newArray);
-    setUserInuptArray(newArray.join(",")); 
+    setUserInuptArray(newArray.join(","));
     setTimeout(() => {
       const bars = document.getElementsByClassName("bar");
       for (let i = 0; i < bars.length; i++) {
         bars[i].style.backgroundColor = "#5fb8fd";
       }
-    }, 0); 
+    }, 0);
   };
 
   const reSet = () => {
- 
     setArray([]);
     setSelectedSorting("");
     setUserInuptArray("");
@@ -117,7 +116,7 @@ function App() {
       }
       case "insertionSort": {
         const { animations, sorted } = insertionSort(array);
-        animateInsertionSorting(animations, sorted); 
+        animateInsertionSorting(animations, sorted);
         break;
       }
       default:
@@ -127,33 +126,33 @@ function App() {
   };
   const bubbleAnimation = (animations, sortedArray) => {
     const barEle = document.getElementsByClassName("bar");
-  
+
     for (let j = 0; j < barEle.length; j++) {
       barEle[j].style.backgroundColor = "#5fb8fd";
     }
-  
+
     for (let i = 0; i < animations.length; i++) {
       const animation = animations[i];
-  
+
       setTimeout(() => {
         if (animation.type === "compare") {
           const [barOneInd, barTwoInd] = animation.indices;
           const barOne = barEle[barOneInd];
           const barTwo = barEle[barTwoInd];
-  
+
           barOne.style.backgroundColor = animation.swap ? "red" : "yellow";
           barTwo.style.backgroundColor = animation.swap ? "red" : "yellow";
-  
+
           if (animation.swap) {
             const tempHeight = barOne.style.height;
             barOne.style.height = barTwo.style.height;
             barTwo.style.height = tempHeight;
-  
+
             const tempText = barOne.innerText;
             barOne.innerText = barTwo.innerText;
             barTwo.innerText = tempText;
           }
-  
+
           setTimeout(() => {
             if (barOne.style.backgroundColor !== "green") {
               barOne.style.backgroundColor = "#5fb8fd";
@@ -162,75 +161,75 @@ function App() {
               barTwo.style.backgroundColor = "#5fb8fd";
             }
           }, speed);
-  
         } else if (animation.type === "markSorted") {
           barEle[animation.index].style.backgroundColor = "green";
         }
-      }, i * speed/0.5);
+      }, (i * speed) / 0.5);
     }
-  
+
     setTimeout(() => {
       setIsSorting(false);
       setArray(sortedArray);
     }, animations.length * speed + speed);
   };
-  
-  
+
   const animateSelectionSorting = (animations, sortedArray) => {
     const bars = document.getElementsByClassName("bar");
-  
+
     for (let i = 0; i < bars.length; i++) {
       bars[i].style.backgroundColor = "#5fb8fd";
     }
-  
+
     for (let i = 0; i < animations.length; i++) {
       const [barOneIdx, barTwoIdx, isSwap, isSorted] = animations[i];
       const barOne = bars[barOneIdx];
       const barTwo = bars[barTwoIdx];
-  
+
       setTimeout(() => {
         if (!isSorted) {
           barOne.style.backgroundColor = isSwap ? "red" : "yellow";
           barTwo.style.backgroundColor = isSwap ? "red" : "yellow";
-  
+
           if (isSwap) {
             const tempHeight = barOne.style.height;
             barOne.style.height = barTwo.style.height;
             barTwo.style.height = tempHeight;
-  
+
             const tempText = barOne.innerText;
             barOne.innerText = barTwo.innerText;
             barTwo.innerText = tempText;
           }
-  
+
           setTimeout(() => {
-            if (barOne.style.backgroundColor !== "green") barOne.style.backgroundColor = "#5fb8fd";
-            if (barTwo.style.backgroundColor !== "green") barTwo.style.backgroundColor = "#5fb8fd";
+            if (barOne.style.backgroundColor !== "green")
+              barOne.style.backgroundColor = "#5fb8fd";
+            if (barTwo.style.backgroundColor !== "green")
+              barTwo.style.backgroundColor = "#5fb8fd";
           }, speed);
         }
-  
+
         if (isSorted) {
           bars[barOneIdx].style.backgroundColor = "green";
         }
-      }, i * speed/0.5);
+      }, (i * speed) / 0.5);
     }
-  
+
     setTimeout(() => {
       setIsSorting(false);
       setArray(sortedArray);
     }, animations.length * speed + speed);
   };
-  
+
   const animateInsertionSorting = (animations, sortedArray) => {
     const bars = document.getElementsByClassName("bar");
     for (let i = 0; i < bars.length; i++) {
-      bars[i].style.backgroundColor = "#5fb8fd";  
+      bars[i].style.backgroundColor = "#5fb8fd";
     }
     bars[0].style.backgroundColor = "green";
 
     for (let i = 0; i < animations.length; i++) {
       const action = animations[i];
-  
+
       setTimeout(() => {
         switch (action.type) {
           case "compare": {
@@ -238,14 +237,14 @@ function App() {
             bar.style.backgroundColor = "yellow";
             break;
           }
-  
+
           case "swap": {
             const [i1, i2] = action.indices;
             bars[i1].style.backgroundColor = "red";
             bars[i2].style.backgroundColor = "red";
             break;
           }
-  
+
           case "overwrite": {
             const toBar = bars[action.toIndex];
             const fromBar = bars[action.fromIndex];
@@ -253,29 +252,28 @@ function App() {
             toBar.innerText = fromBar.innerText;
             break;
           }
-  
+
           case "insert": {
             const bar = bars[action.index];
-            const newHeight = action.value; 
-            bar.style.height = `${newHeight}px`; 
+            const newHeight = action.value;
+            bar.style.height = `${newHeight}px`;
             bar.innerText = action.value;
             break;
           }
-          
-  
+
           case "sortedUpto": {
             for (let k = 0; k <= action.index; k++) {
               bars[k].style.backgroundColor = "green";
             }
             break;
           }
-  
+
           default:
             break;
         }
       }, i * speed);
     }
-  
+
     setTimeout(() => {
       for (let j = 0; j < bars.length; j++) {
         setTimeout(() => {
@@ -290,8 +288,8 @@ function App() {
   };
   const animateMergeSorting = (animations) => {
     const bars = document.getElementsByClassName("bar");
-    for (let i=0;i<bars.length;i++){
-      bars[i].style.backgroundColor="#5fb8fd";
+    for (let i = 0; i < bars.length; i++) {
+      bars[i].style.backgroundColor = "#5fb8fd";
     }
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = i % 3 !== 2;
@@ -324,54 +322,56 @@ function App() {
     }, animations.length * speed);
   };
 
-     
-
   return (
     <div className="app-container">
-      <div className="sidebar">
-        <h2 className="group">
-          <span className="sort">Sort</span>
-          <span className="ify">ify</span>
-        </h2>
-
-        <Control
-          handleNewArrayGenrate={handleNewArrayGenrate}
-          handleSorting={handleSorting}
-          userInuptArray={userInuptArray}
-          setUserInuptArray={setUserInuptArray}
-          setSpeed={setSpeed}
-          reSet={reSet}
-          isSorting={isSorting}
-          speed={speed}
-          selectedSorting={selectedSorting}
-        />
-
-        <p className="footer" onClick={() => setShowContact(true)}>
-          Get In Touch
-        </p>
-      </div>
-
-      <div className="visualizer">
-        <Visual array={array} />
-        <button
-          className="play-btn"
-          onClick={handlePlay}
-          disabled={ isSorting ||
-            array.length === '' ||
-            !selectedSorting ||
-            !speed }
-        >
-          PLAY
-        </button>
-      </div>
-      {showColor && (
-        <div className="legend-right">
-          <button className="close-legend" onClick={() => setShowColor(false)}>
-            ×
-          </button>
-          <Color />
+        <div className="sidebar">
+          <div className="heading">
+            <h2 className="group">
+              <span className="sort">Sort</span>
+              <span className="ify">ify</span>
+            </h2>
+          </div>
+          <div className="new-sidebar">
+            <Control
+              handleNewArrayGenrate={handleNewArrayGenrate}
+              handleSorting={handleSorting}
+              userInuptArray={userInuptArray}
+              setUserInuptArray={setUserInuptArray}
+              setSpeed={setSpeed}
+              reSet={reSet}
+              isSorting={isSorting}
+              speed={speed}
+              selectedSorting={selectedSorting}
+            />
+            <p className="footer" onClick={() => setShowContact(true)}>
+              Get In Touch
+            </p>
+          </div>
         </div>
-      )}
+        <div className="visualizer-wrap">
+        <div className="visualizer" > 
+          <Visual array={array} />
+        </div>  
+          <div className="button-container">
+            <button
+              className="play-btn"
+              onClick={handlePlay}
+              disabled={
+                isSorting || array.length === 0 || !selectedSorting || !speed
+              }
+            >
+              PLAY
+            </button>
+          </div>
+
+      
+        {
+          showColor && (<Color 
+            isVisible={showColor}
+            onClose={()=> setShowColor(false)}/>
+          )
+        }
+        </div>
 
       {showContact && (
         <ContactSection

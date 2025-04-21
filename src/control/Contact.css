@@ -7,7 +7,6 @@
     color: white;
     text-align: center;
     padding: 30px 20px;
-   
     transition: bottom 0.4s ease-in-out;
     z-index: 1000;
     box-shadow: 0 0 10px #696868, 0 0 20px #585555, 0 0 30px #666060;
@@ -62,31 +61,4 @@
     color: #ff4d4d;
   
   }
-  @media (max-width: 830px) {
-    .contact-section {
-      padding: 20px 10px;
-    }
-  
-    .social-icons {
-      flex-direction: row;
-      gap: 55px;
-      font-size: 24px;
-    }
-  
-    .close-icon {
-      top: -30px;
-      right: 15px;
-      font-size: 28px;
-    }
-    .close-icon:hover {
-   
-      color: #ff4d4d;
-    }
-    .contact-section h2 {
-      font-size: 20px;
-    }
-    .social-icons a:hover {
-      color: #ff4d4d; 
-    }
-  }
-  
+ 

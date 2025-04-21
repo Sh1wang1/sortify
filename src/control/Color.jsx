@@ -1,8 +1,10 @@
 import React from "react";
 import "./Color.css";
 
-function Color() {
+function Color({ isVisible, onClose }) {
   return (
+    <div className={`color-section ${isVisible ? "show" : ""}`}>
+      <span className="close-icon" onClick={onClose}>&times;</span>
     <div className="legend-container">
       <h3 className="visual">Visual Actions</h3>
       <ul className="legend-list">
@@ -23,6 +25,7 @@ function Color() {
           <span className="legend-label">Sorted</span>
         </li>
       </ul>
+    </div>
     </div>
   );
 }

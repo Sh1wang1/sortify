@@ -36,7 +36,7 @@ function Control({
         Reset
       </button>
       <div className="select-wrap">
-        <div className="child-wrap">
+        <div className="child-wrap algo">
           <label htmlFor="algorithm">
             Algorithum:
             <select
