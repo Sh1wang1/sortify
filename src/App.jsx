@@ -124,35 +124,41 @@ function App() {
         break;
     }
   };
-  const bubbleAnimation = (animations, sortedArray) => {
+  const bubbleAnimation = (animations) => {
     const barEle = document.getElementsByClassName("bar");
-
+  
     for (let j = 0; j < barEle.length; j++) {
       barEle[j].style.backgroundColor = "#5fb8fd";
     }
-
+  
+    let tempArray = [...array];
+  
     for (let i = 0; i < animations.length; i++) {
       const animation = animations[i];
-
+  
       setTimeout(() => {
         if (animation.type === "compare") {
           const [barOneInd, barTwoInd] = animation.indices;
           const barOne = barEle[barOneInd];
           const barTwo = barEle[barTwoInd];
-
+  
           barOne.style.backgroundColor = animation.swap ? "red" : "yellow";
           barTwo.style.backgroundColor = animation.swap ? "red" : "yellow";
-
+  
           if (animation.swap) {
             const tempHeight = barOne.style.height;
             barOne.style.height = barTwo.style.height;
             barTwo.style.height = tempHeight;
-
+  
             const tempText = barOne.innerText;
             barOne.innerText = barTwo.innerText;
             barTwo.innerText = tempText;
+  
+            const temp = tempArray[barOneInd];
+            tempArray[barOneInd] = tempArray[barTwoInd];
+            tempArray[barTwoInd] = temp;
           }
-
+  
           setTimeout(() => {
             if (barOne.style.backgroundColor !== "green") {
               barOne.style.backgroundColor = "#5fb8fd";
@@ -166,10 +172,10 @@ function App() {
         }
       }, (i * speed) / 0.5);
     }
-
+  
     setTimeout(() => {
+      setArray(tempArray); 
       setIsSorting(false);
-      setArray(sortedArray);
     }, animations.length * speed + speed);
   };
 
@@ -179,7 +185,7 @@ function App() {
     for (let i = 0; i < bars.length; i++) {
       bars[i].style.backgroundColor = "#5fb8fd";
     }
-
+    let tempArray = [...array]; 
     for (let i = 0; i < animations.length; i++) {
       const [barOneIdx, barTwoIdx, isSwap, isSorted] = animations[i];
       const barOne = bars[barOneIdx];
@@ -198,6 +204,10 @@ function App() {
             const tempText = barOne.innerText;
             barOne.innerText = barTwo.innerText;
             barTwo.innerText = tempText;
+
+            const temp = tempArray[barOneIdx];
+            tempArray[barOneIdx] = tempArray[barTwoIdx];
+            tempArray[barTwoIdx] = temp;
           }
 
           setTimeout(() => {
@@ -216,7 +226,7 @@ function App() {
 
     setTimeout(() => {
       setIsSorting(false);
-      setArray(sortedArray);
+      setArray(tempArray);
     }, animations.length * speed + speed);
   };
 
