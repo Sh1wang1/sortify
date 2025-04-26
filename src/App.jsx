@@ -324,13 +324,7 @@ function App() {
 
   return (
     <div className="app-container">
-        <div className="sidebar">
-          <div className="heading">
-            <h2 className="group">
-              <span className="sort">Sort</span>
-              <span className="ify">ify</span>
-            </h2>
-          </div>
+             <div className="sidebar">
           <div className="new-sidebar">
             <Control
               handleNewArrayGenrate={handleNewArrayGenrate}
@@ -349,6 +343,12 @@ function App() {
           </div>
         </div>
         <div className="visualizer-wrap">
+        <div className="heading">
+            <h2 className="group">
+              <span className="sort">Sort</span>
+              <span className="ify">ify</span>
+            </h2>
+          </div>
         <div className="visualizer" > 
           <Visual array={array} />
         </div>  

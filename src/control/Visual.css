@@ -36,22 +36,6 @@
     background-color: #00bcd4;
   }
 
-  @media (max-width: 830px) {
-    .array-container {
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-right: 0;
-      padding: 10px;
-    }
-  
-    .bar {
-      width: 18px;
-      margin: 2px;
-      font-size: 10px;
-      padding-bottom: 2px;
-    }
-  }
-  
- 
+
  
  
