@@ -1,64 +1,96 @@
+/* --- Modern Contact Section Styles --- */
 .contact-section {
-    position: fixed;
-    bottom: -400px;
-    left: 0;
-    width: 100%;
-    background-color: rgb(44, 42, 42);
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
-    transition: bottom 0.4s ease-in-out;
-    z-index: 1000;
-    box-shadow: 0 0 10px #696868, 0 0 20px #585555, 0 0 30px #666060;
-  }
-  
-  .contact-section.show {
-    bottom: 0;
-  }
-  
-  .contact-section h2 {
-    font-size: 26px;
-    margin-top: 10px;
-    background: linear-gradient(to right, #ffffff, #b19191); 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .social-icons a {
-    color: inherit;
-    transition: color 0.3s;
-  }
-  
-  .social-icons a:hover {
-    color: #ff4d4d; 
-  }
-  .social-icons {
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    color: white;
-    gap:200px;
-    margin-bottom: 20px;
-  }
-  
-  .close-icon {
-    margin-top: 20px;
-    padding:10px 10px;
-   color: #ffffff;
-   border: none;
-    font-size: 35px;
-    cursor: pointer;
-    font-weight: bold;
-    position: absolute;
-    top: -15px;
-    right:50px;
+  position: fixed;
+  bottom: -400px;
+  left: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 36px 20px 32px 20px;
+  transition: bottom 0.5s cubic-bezier(.77,0,.18,1);
+  z-index: 1000;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background: rgba(34, 34, 44, 0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  animation: contactFadeIn 0.7s cubic-bezier(.77,0,.18,1);
+}
 
-  }
+@keyframes contactFadeIn {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  .close-icon:hover {
-   
-    color: #ff4d4d;
-  
-  }
- 
+.contact-section.show {
+  bottom: 0;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  margin: 0 0 18px 0;
+  background: linear-gradient(90deg, #fff, #e91e63 60%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11.5rem;
+  margin: 0 auto 18px auto;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 2px 12px rgba(233,30,99,0.08);
+  font-size: 2rem;
+  color: #fff;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  position: relative;
+}
+.social-icons a:hover {
+  background: linear-gradient(135deg, #e91e63 0%, #ffb6c1 100%);
+  color: #fff;
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 6px 24px rgba(233,30,99,0.18);
+}
+
+.close-icon {
+  color: #fff;
+  border: none;
+  font-size: 2.2rem;
+  cursor: pointer;
+  font-weight: 700;
+  position: absolute;
+  right: 38px;
+  bottom:20px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  width: 49px;
+  height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(233,30,99,0.08);
+}
+.close-icon:hover {
+  background: linear-gradient(135deg, #e91e63 0%, #ffb6c1 100%);
+  color: #fff;
+  transform: scale(1.08);
+}
+/* --- End Modern Contact Section Styles --- */

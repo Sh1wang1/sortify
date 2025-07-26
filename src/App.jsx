@@ -56,7 +56,8 @@ function App() {
     const userInput = userInuptArray.split(",");
     const filteredInput = userInput
       .map((item) => Number(item))
-      .filter((num) => Number.isInteger(num) && num >= 1 && num <= 400);
+      .filter((num) => Number.isInteger(num) && num >= 1 && num <= 400)
+      .slice(0, 15); // Only allow up to 15 bars
     setArray([...filteredInput]);
     const bars = document.getElementsByClassName("bar");
     for (let i = 0; i < bars.length; i++) {

@@ -2,99 +2,125 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 15%;
+  width: 19rem;
+  max-width: 95vw;
   height: 100vh;
-  background: linear-gradient(to right, #38394e 0%, rgb(226, 225, 225) 100%);
+  background: rgba(44, 44, 60, 0.92);
+  backdrop-filter: blur(18px) saturate(180%);
   color: white;
   text-align: center;
-  padding: 30px 20px;
-  transition: right 0.4s ease-in-out;
+  padding: 36px 24px 32px 24px;
+  transition: right 0.5s cubic-bezier(.77,0,.18,1);
   z-index: 1000;
-  box-shadow: 0 0 10px #b4b4b4d0, 0 0 20px #d1d0d0b0, 0 0 30px #928f8fc0;
-  border-radius: 12px 0 0 12px;
+  box-shadow: -8px 0 32px 0 rgba(31, 38, 135, 0.18);
+  border-radius: 24px 0 0 24px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: flex-start;
+  animation: colorFadeIn 0.7s cubic-bezier(.77,0,.18,1);
+}
+
+@keyframes colorFadeIn {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .color-section.show {
   right: 0;
 }
 
-.legend-container {
-  flex-grow: 1;
-}
-
-.legend-container h3 {
-  font-size: 23px;
+.legend-container h3.visual {
+  font-size: 1.5rem;
   text-align: center;
-  padding-top: 14px;
-  font-weight: bold;
-  background: linear-gradient(to right, #ffffff 60%, #000000 69%);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #fff, #e91e63 60%, #fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  letter-spacing: 0.5px;
 }
 
 .legend-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .legend-item {
-  margin-top: 30px;
   display: flex;
-  padding: 10px;
   align-items: center;
-  margin-bottom: 0.6rem;
-  font-size: 0.95rem;
-  color: whitesmoke;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(83, 83, 83, 0.377);
-  border-radius: 15px;
-  gap: 8px;
+  gap: 1rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 2rem;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 2px 12px rgba(233,30,99,0.08);
+  font-size: 1.05rem;
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.2s, box-shadow 0.2s;
+  border: 1.5px solid rgba(255,255,255,0.10);
 }
 
-.legend-label {
-  font-size: 15px;
+.legend-item:hover {
+  background: linear-gradient(90deg, #e91e63 0%, #5fb8fd 100%);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(233,30,99,0.18);
 }
 
 .legend-indicator {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-  border-radius: 4px;
-  border: 1px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  font-size: 1.2rem;
+  margin-right: 0.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-.red {
-  background-color: #e74c3c;
-}
+.red { background: linear-gradient(135deg, #e74c3c 60%, #ffb6b6 100%); }
+.yellow { background: linear-gradient(135deg, #f1c40f 60%, #fff6b6 100%); }
+.blue { background: linear-gradient(135deg, #5fb8fd 60%, #b6e0ff 100%); }
+.green { background: linear-gradient(135deg, #2ecc71 60%, #b6ffd0 100%); }
 
-.yellow {
-  background-color: #f1c40f;
-}
-
-.blue {
-  background-color: #5fb8fd;
-}
-
-.green {
-  background-color: #2ecc71;
+.legend-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .close-icon {
-  font-size: 30px;
-  cursor: pointer;
-  font-weight: bold;
-  background: transparent;
-  color: white;
+  color: #fff;
   border: none;
-  right:5px;
-  top:-20px;
+  font-size: 2.1rem;
+  cursor: pointer;
+  font-weight: 700;
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(233,30,99,0.08);
 }
-
 .close-icon:hover {
-  color: #ff4d4d;
+  background: linear-gradient(135deg, #e91e63 0%, #ffb6c1 100%);
+  color: #fff;
+  transform: scale(1.08);
 }
